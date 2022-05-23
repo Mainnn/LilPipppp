@@ -4,6 +4,9 @@ namespace CrazyEight
 {
 	public class Dash : MonoBehaviour
 	{
+        [SerializeField] private GameObject _effectDash;
+        GameObject effectDahs = null;
+        private Vector2 _OffsetDashEffect;
         //Страшно вырубай!!!
         private Rigidbody2D _rigidbody;
 
@@ -41,11 +44,19 @@ namespace CrazyEight
         {
             if ((_isDashing || _isDashTarget)&& _doubleDash)
             {
+                _OffsetDashEffect = new Vector2(transform.position.x - (0.5f * transform.localScale.x), transform.position.y);
                 _rigidbody.velocity = Vector2.zero;
                 _rigidbody.velocity = transform.right * _dashDirection * _forceDash;
                 transform.position = new Vector3(transform.position.x, _dashPositionY);
                 _currentDashtimer -= Time.deltaTime;
-                if(_currentDashtimer <= 0)
+                if (effectDahs == null)
+                {
+                    effectDahs = Instantiate(_effectDash, _OffsetDashEffect, _effectDash.transform.rotation);
+                    effectDahs.transform.parent = transform;
+                    effectDahs.transform.localScale = _effectDash.transform.localScale;
+                    Destroy(effectDahs, 0.26f);
+                }
+                if (_currentDashtimer <= 0)
                 {
                     _rigidbody.velocity = Vector2.zero;
                     _isDashing = false;
