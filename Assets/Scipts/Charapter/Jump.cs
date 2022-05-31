@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CrazyEight
@@ -10,7 +11,6 @@ namespace CrazyEight
 
         private float _forceJump = 325;
 
-        //private bool _twoJump = false;
         private bool _ground =true;
         private bool _doubleJump;
 
@@ -40,7 +40,6 @@ namespace CrazyEight
         private void GroundChek(bool ground)
         {
             _ground = ground;
-            //_twoJump = false;
         }
 
         private void JumpCharapter()
@@ -51,7 +50,6 @@ namespace CrazyEight
 
                 if (_doubleJump)
                 {
-                    //_twoJump = true;
                     var efecct = Instantiate(_effectJump, new Vector2(transform.position.x,transform.position.y -0.5f), Quaternion.identity);
                     Destroy(efecct, 0.4F);
                 }

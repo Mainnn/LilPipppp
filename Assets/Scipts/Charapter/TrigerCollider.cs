@@ -21,10 +21,12 @@ namespace CrazyEight
             if (collision.gameObject.TryGetComponent<JumpPlatform>(out JumpPlatform jumpPlatform))
             {
                 OnDoubleJump?.Invoke(true);
+                Time.timeScale = 0.75f;
             }
             if (collision.gameObject.TryGetComponent<DashTarget>(out DashTarget dashTarget))
             {
                 OnDashTarget?.Invoke(true);
+                Time.timeScale = 0.75f;
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
@@ -32,10 +34,12 @@ namespace CrazyEight
             if (collision.gameObject.TryGetComponent<JumpPlatform>(out JumpPlatform jumpPlatform))
             {
                 OnDoubleJump?.Invoke(false);
+                Time.timeScale = 1;
             }
             if(collision.gameObject.TryGetComponent<DashTarget>(out DashTarget dashTarget))
             {
                 OnDashTarget?.Invoke(false);
+                Time.timeScale = 1;
             }
         }
 
@@ -46,4 +50,5 @@ namespace CrazyEight
             Destroy(collision.gameObject, 0.35f);
         }
     }
+    
 }

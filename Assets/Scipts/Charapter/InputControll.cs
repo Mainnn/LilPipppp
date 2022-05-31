@@ -19,6 +19,7 @@ namespace CrazyEight
 #elif UNITY_ANDROID
             Application.targetFrameRate = 60;
 #endif
+            Time.timeScale = 1;
         }
 
         private void Update()
